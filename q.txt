@@ -1,0 +1,26 @@
+[기둥]
+나무의 기둥이 휘어져있습니까?
+가지, 수관 없이 그루터기만 그렸습니까?
+[가지]
+나무의 가지의 끝이 날카롭습니까?
+나무의 가지가 힘없이 늘어져 있습니까?
+나무의 가지가 잘려있다고 생각하십니까?
+[수관]
+나무의 수관이 구름 혹은 목화솜 모양입니까?
+나무의 수관이 여러 영역으로 나뉘어 있습니까?
+[뿌리]
+나무의 뿌리를 자세히 묘사했습니까?
+
+from roboflow import Roboflow
+rf = Roboflow(api_key="API_KEY")
+project = rf.workspace().project("MODEL_ENDPOINT")
+model = project.version(VERSION).model
+
+# infer on a local image
+print(model.predict("your_image.jpg", confidence=40, overlap=30).json())
+
+# visualize your prediction
+# model.predict("your_image.jpg", confidence=40, overlap=30).save("prediction.jpg")
+
+# infer on an image hosted elsewhere
+# print(model.predict("URL_OF_YOUR_IMAGE", hosted=True, confidence=40, overlap=30).json())
